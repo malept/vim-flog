@@ -1,7 +1,7 @@
 Vim Flog Plugin
 ===============
 
-Personal version of fousa/vim-flog plugin.
+_(Forked from [Ruby Cyclomatic Complexity Plugin](https://github.com/skammer/vim-ruby-complexity) created by @skammer)_
 
 Indicates the Flog number in front of the action in your Ruby code to indicate the complexity.
 
@@ -29,7 +29,7 @@ Install the Flog gem like this: `gem install flog`.
 
 To install the plugin just run this command in your Terminal:
 
-`curl https://github.com/fousa/vim-flog/raw/master/plugin/flog.vim -o ~/.vim/plugin/flog.vim`
+`curl https://raw.github.com/fousa/vim-flog/master/plugin/flog.vim -o ~/.vim/plugin/flog.vim`
 
 When this is done add `:silent exe "g:flog_enable"` to your .vimrc file.
 
@@ -49,6 +49,28 @@ You can set the limits for the complexity indication with the following commands
 
 * Set the limit to switch to a high complexity: <br/>
     :silent exe "`let g:flog_high_limit=20"`
+
+You can hide some levels of complexity:
+
+* Hide low complexity: <br/>
+    `:silent exe "let g:flog_hide_low=1"`
+
+* Hide medium complexity: <br/>
+    `:silent exe "let g:flog_hide_medium=1"`
+
+You can also turn flog off and on:
+
+* Turn on flog
+    `:call FlogEnable()`
+
+* Turn off flog
+    `:call FlogDisable()`
+
+* Toggle flog
+    `:call FlogToggle()`
+
+Additionally, you can map this in your .vimrc:
+    `:map ,f :call FlogToggle()<cr>`
 
 Credits
 -------
