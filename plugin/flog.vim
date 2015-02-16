@@ -33,11 +33,11 @@ endif
 exec expand("rubyfile <sfile>:p:h/flog.rb")
 
 function! ShowComplexity()
-  exec expand("rubyfile <sfile>:p:h/show_complexity.rb")
+  exec "rubyfile " . findfile("plugin/show_complexity.rb", &rtp)
 endfunction
 
 function! HideComplexity()
-  exec expand("rubyfile <sfile>:p:h/hide_complexity.rb")
+  exec "rubyfile " . findfile("plugin/hide_complexity.rb", &rtp)
 endfunction
 
 function! FlogDisable()
