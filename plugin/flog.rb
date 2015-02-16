@@ -27,10 +27,10 @@ class Flog
     complexity_results = {}
     each_by_score threshold do |class_method, score, call_list|
       location = @method_locations[class_method]
-      if location then
-        line = location.match(/.+:(\d+)/).to_a[1]
-        complexity_results[line] = [score, class_method]
-      end
+      next unless location
+
+      line = location.match(/.+:(\d+)/).to_a[1]
+      complexity_results[line] = [score, class_method]
     end
     complexity_results
   ensure
@@ -56,9 +56,9 @@ def show_complexity(results = {})
     end
     value = score >= 100 ? "9+" : score.to_i
     value = nil if (hide_low == 1 && value < medium_limit) || (hide_medium == 1 && value < high_limit)
-    if value
-      VIM.command(":sign define #{value} text=#{value} texthl=Sign#{complexity}")
-      VIM.command(":sign place #{line_number} line=#{line_number} name=#{value} file=#{VIM::Buffer.current.name}")
-    end
+    return unless value
+
+    VIM.command(":sign define #{value} text=#{value} texthl=Sign#{complexity}")
+    VIM.command(":sign place #{line_number} line=#{line_number} name=#{value} file=#{VIM::Buffer.current.name}")
   end
 end
